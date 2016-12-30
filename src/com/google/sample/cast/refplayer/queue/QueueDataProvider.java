@@ -344,8 +344,7 @@ public class QueueDataProvider {
             }
         }
 
-        @Override
-        public void onAdBreakStatusUpdated() {
+       public void onAdBreakStatusUpdated() {
 
         }
     }

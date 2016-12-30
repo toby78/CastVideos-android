@@ -149,7 +149,6 @@ public class QueueListViewActivity extends AppCompatActivity {
             }
         }
 
-        @Override
         public void onAdBreakStatusUpdated() {
 
         }
