@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.android.tools.build:gradle:2.2.3'
     }
 }
 
@@ -17,12 +17,16 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
+
     buildToolsVersion "25.0.2"
 
+
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 16
         targetSdkVersion 25
         applicationId="com.google.sample.cast.refplayer"
+        multiDexEnabled true
+
     }
     enforceUniquePackageName=false
     dexOptions {
