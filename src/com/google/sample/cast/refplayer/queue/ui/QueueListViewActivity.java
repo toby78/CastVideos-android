@@ -114,6 +114,8 @@ public class QueueListViewActivity extends AppCompatActivity {
 
     private class MyRemoteMediaClientListener implements RemoteMediaClient.Listener {
 
+
+
         @Override
         public void onStatusUpdated() {
             updateMediaQueue();
@@ -145,6 +147,11 @@ public class QueueListViewActivity extends AppCompatActivity {
             } else {
                 mEmptyView.setVisibility(View.GONE);
             }
+        }
+
+        @Override
+        public void onAdBreakStatusUpdated() {
+
         }
     }
 

@@ -343,6 +343,11 @@ public class QueueDataProvider {
                 }
             }
         }
+
+        @Override
+        public void onAdBreakStatusUpdated() {
+
+        }
     }
 
     private RemoteMediaClient getRemoteMediaClient() {

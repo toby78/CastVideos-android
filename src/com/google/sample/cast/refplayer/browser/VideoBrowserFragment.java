@@ -16,6 +16,7 @@
 
 package com.google.sample.cast.refplayer.browser;
 
+
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
@@ -131,6 +132,8 @@ public class VideoBrowserFragment extends Fragment implements VideoListAdapter.I
                 .removeSessionManagerListener(mSessionManagerListener, CastSession.class);
         super.onStop();
     }
+
+
 
     private class MySessionManagerListener implements SessionManagerListener<CastSession> {
 
