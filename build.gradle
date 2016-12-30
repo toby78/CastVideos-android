@@ -14,13 +14,14 @@ repositories {
 
 apply plugin: 'com.android.application'
 
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 10
-        targetSdkVersion 23
+        targetSdkVersion 25
         applicationId="com.google.sample.cast.refplayer"
     }
     enforceUniquePackageName=false
@@ -36,11 +37,20 @@ android {
         res.srcDirs = ['res']
     }
 }
+ext {
+    supportLibVersion = '25.1.0'
+    playServicesVersion = '10.0.1'
+}
+
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support:mediarouter-v7:23.4.0'
-    compile 'com.android.support:recyclerview-v7:23.4.0'
-    compile 'com.google.android.gms:play-services-cast-framework:9.4.0'
+
+    compile "com.google.android.gms:play-services:${playServicesVersion}"
+    compile "com.google.android.gms:play-services-cast-framework:${playServicesVersion}"
+    compile "com.android.support:appcompat-v7:${supportLibVersion}"
+
+    compile "com.android.support:recyclerview-v7:${supportLibVersion}"
     compile 'com.googlecode.android-query:android-query:0.25.9'
+
+    //compile 'com.googlecode.android-query:android-query:0.25.9'
 }
