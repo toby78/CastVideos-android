@@ -64,7 +64,7 @@ public class VideoBrowserFragment extends Fragment implements VideoListAdapter.I
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.video_browser_fragment, container, false);
     }
 
@@ -89,7 +89,7 @@ public class VideoBrowserFragment extends Fragment implements VideoListAdapter.I
         } else {
             String transitionName = getString(R.string.transition_image);
             VideoListAdapter.ViewHolder viewHolder =
-                    (VideoListAdapter.ViewHolder) mRecyclerView.findViewHolderForPosition(position);
+                    (VideoListAdapter.ViewHolder) mRecyclerView.findViewHolderForAdapterPosition(position);
             Pair<View, String> imagePair = Pair
                     .create((View) viewHolder.getImageView(), transitionName);
             ActivityOptionsCompat options = ActivityOptionsCompat
@@ -132,7 +132,6 @@ public class VideoBrowserFragment extends Fragment implements VideoListAdapter.I
                 .removeSessionManagerListener(mSessionManagerListener, CastSession.class);
         super.onStop();
     }
-
 
 
     private class MySessionManagerListener implements SessionManagerListener<CastSession> {
