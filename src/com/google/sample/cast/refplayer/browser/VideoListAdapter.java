@@ -16,13 +16,12 @@
 
 package com.google.sample.cast.refplayer.browser;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 import com.google.android.gms.cast.framework.CastContext;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.sample.cast.refplayer.R;
-
-import com.androidquery.AQuery;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -104,7 +103,6 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
         private final View mParent;
         private final View mMenu;
         private final View mTextContainer;
-        private AQuery mAquery;
         private TextView mTitleView;
         private TextView mDescriptionView;
         private ImageView mImgView;
@@ -115,13 +113,11 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
             TextView descriptionView = (TextView) parent.findViewById(R.id.textView2);
             View menu = parent.findViewById(R.id.menu);
             View textContainer = parent.findViewById(R.id.text_container);
-            AQuery aQuery = new AQuery(parent);
-            return new ViewHolder(parent, imgView, textContainer, titleView, descriptionView, menu,
-                    aQuery);
+            return new ViewHolder(parent, imgView, textContainer, titleView, descriptionView, menu);
         }
 
         private ViewHolder(View parent, ImageView imgView, View textContainer, TextView titleView,
-                TextView descriptionView, View menu, AQuery aQuery) {
+                TextView descriptionView, View menu) {
             super(parent);
             mParent = parent;
             mImgView = imgView;
@@ -129,7 +125,6 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
             mMenu = menu;
             mTitleView = titleView;
             mDescriptionView = descriptionView;
-            mAquery = aQuery;
         }
 
         public void setTitle(String title) {
@@ -141,8 +136,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<VideoListAdapter.View
         }
 
         public void setImage(String imgUrl) {
-            mAquery.id(mImgView).width(114).image(imgUrl,
-                    true, true, 0, R.drawable.default_video, null, 0, ASPECT_RATIO);
+            Glide.with(itemView.getContext()).load(imgUrl).into(mImgView);
         }
 
         public void setOnClickListener(View.OnClickListener listener) {

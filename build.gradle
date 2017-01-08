@@ -52,9 +52,6 @@ dependencies {
     compile "com.google.android.gms:play-services:${playServicesVersion}"
     compile "com.google.android.gms:play-services-cast-framework:${playServicesVersion}"
     compile "com.android.support:appcompat-v7:${supportLibVersion}"
-
     compile "com.android.support:recyclerview-v7:${supportLibVersion}"
-    compile 'com.googlecode.android-query:android-query:0.25.9'
-
-    //compile 'com.googlecode.android-query:android-query:0.25.9'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

@@ -16,6 +16,10 @@
 
 package com.google.sample.cast.refplayer.queue.ui;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
 import com.google.android.gms.cast.MediaQueueItem;
@@ -25,8 +29,6 @@ import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.sample.cast.refplayer.R;
 import com.google.sample.cast.refplayer.queue.QueueDataProvider;
-
-import com.androidquery.AQuery;
 
 import android.content.Context;
 import android.support.annotation.IntDef;
@@ -139,11 +141,27 @@ public class QueueListAdapter extends RecyclerView.Adapter<QueueListAdapter.Queu
         MediaMetadata metaData = info.getMetadata();
         holder.mTitleView.setText(metaData.getString(MediaMetadata.KEY_TITLE));
         holder.mDescriptionView.setText(metaData.getString(MediaMetadata.KEY_SUBTITLE));
-        AQuery aq = new AQuery(holder.itemView);
         if (!metaData.getImages().isEmpty()) {
-            aq.id(holder.mImageView).width(IMAGE_THUMBNAIL_WIDTH)
-                    .image(metaData.getImages().get(0).getUrl().toString(), true, true, 0,
-                            R.drawable.default_video, null, 0, ASPECT_RATIO);
+            Glide.with(holder.itemView.getContext())
+                    .load(metaData.getImages().get(0).getUrl().toString())
+                    .listener(new RequestListener<String, GlideDrawable>() {
+                        @Override
+                        public boolean onException(Exception e, String model,
+                                                   Target<GlideDrawable> target,
+                                                   boolean isFirstResource) {
+                            holder.mImageView.setImageResource(R.drawable.default_video);
+                            return false;
+                        }
+
+                        @Override
+                        public boolean onResourceReady(GlideDrawable resource, String model,
+                                                       Target<GlideDrawable> target,
+                                                       boolean isFromMemoryCache,
+                                                       boolean isFirstResource) {
+                            return false;
+                        }
+                    })
+                    .into(holder.mImageView);
         }
 
         holder.mDragHandle.setOnTouchListener(new View.OnTouchListener() {
